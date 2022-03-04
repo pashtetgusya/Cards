@@ -8,7 +8,8 @@
 import Foundation
 
 enum CardType: CaseIterable {
-    case circle
+    case filledCircle
+    case unfilledCircle
     case cross
     case square
     case fill

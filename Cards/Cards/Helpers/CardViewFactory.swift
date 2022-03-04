@@ -13,8 +13,10 @@ class CardViewFactory {
         let viewColor = getViewColorBy(modelColor: color)
         
         switch shape {
-        case .circle:
-            return CardView<CircleShape>(frame: frame, color: viewColor)
+        case .filledCircle:
+            return CardView<FilledCircleShape>(frame: frame, color: viewColor)
+        case .unfilledCircle:
+            return CardView<UnfilledCircleShape>(frame: frame, color: viewColor)
         case .cross:
             return CardView<CrossShap>(frame: frame, color: viewColor)
         case .square:
