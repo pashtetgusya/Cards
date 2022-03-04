@@ -72,6 +72,25 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
         if self.frame.origin == startTouchPoint {
             flip()
         }
+        
+        if (!self.superview!.bounds.intersection(self.frame).equalTo(self.frame)) {
+            UIView.animate(withDuration: 0.5, animations: {
+//                Если карточка выходит за какую-либо из границ, то она перемещается обратно внутрь игрового поля
+//                X и Y разделены для того, чтобы при выходе карточки за обе координаты она возвращалась обратно в угол
+//                P.S Уверен, что можно сделать как-то более аккуратно
+                if self.frame.origin.x > ((self.superview?.bounds.width)! - self.frame.width) {
+                    self.frame.origin = CGPoint(x: ((self.superview?.bounds.width)! - self.frame.width), y: self.frame.origin.y)
+                } else if self.frame.origin.x < 0 {
+                    self.frame.origin = CGPoint(x: 0, y: self.frame.origin.y)
+                }
+                if self.frame.origin.y > ((self.superview?.bounds.height)! - self.frame.height) {
+                    self.frame.origin = CGPoint(x: self.frame.origin.x, y: ((self.superview?.bounds.height)! - self.frame.height))
+                } else if self.frame.origin.y < 0 {
+                    self.frame.origin = CGPoint(x: self.frame.origin.x, y: 0)
+                }
+            })
+        }
+
     }
     
     func flip() {
