@@ -12,6 +12,7 @@ protocol FlippableView: UIView {
     var flippCompletationHandler: ((FlippableView) -> Void)? { get set }
     
     func flip()
+    func flipWithoutHandler()
 }
 
 class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
@@ -100,6 +101,14 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
         UIView.transition(from: fromView, to: toView, duration: 0.5, options: [.transitionFlipFromTop], completion: { _ in
             self.flippCompletationHandler?(self)
         })
+        isFlipped.toggle()
+    }
+    
+    func flipWithoutHandler() {
+        let fromView = isFlipped ? frontSideView : backSideView
+        let toView = isFlipped ? backSideView : frontSideView
+        
+        UIView.transition(from: fromView, to: toView, duration: 0.5, options: [.transitionFlipFromTop], completion: nil)
         isFlipped.toggle()
     }
 

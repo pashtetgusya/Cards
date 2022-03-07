@@ -90,7 +90,7 @@ class SquareShape: CAShapeLayer, ShapeLayerProtocol {
     }
 }
 
-class CrossShap: CAShapeLayer, ShapeLayerProtocol {
+class CrossShape: CAShapeLayer, ShapeLayerProtocol {
     required init(size: CGSize, fillColor: CGColor) {
         super.init()
         

@@ -14,6 +14,7 @@ class BoardGameController: UIViewController {
     
     lazy var game: Game = getNewGame()
     lazy var startButtonView = getStartButtonView()
+    lazy var flipAllCardsButtonView = getFlipAllCardsButtonView()
     lazy var boardGameView = getBoardGameView()
 
     private var cardSize: CGSize {
@@ -36,6 +37,7 @@ class BoardGameController: UIViewController {
         
         view.backgroundColor = .white
         view.addSubview(startButtonView)
+        view.addSubview(flipAllCardsButtonView)
         view.addSubview(boardGameView)
     }
     
@@ -43,6 +45,31 @@ class BoardGameController: UIViewController {
         game = getNewGame()
         let cards = getCardBy(modelData: game.cards)
         placeCardsOnBoard(cards)
+    }
+    
+    @objc func flipAllCards(_ sender: UIButton) {
+        var frontSideCards: [FlippableView] = []
+        var backSideCards: [FlippableView] = []
+        
+        let cards = boardGameView.subviews as? [FlippableView]
+
+        for card in cards! {
+            if card.isFlipped {
+                frontSideCards.append(card)
+            } else if !card.isFlipped {
+                backSideCards.append(card)
+            }
+        }
+        
+        if frontSideCards.count > backSideCards.count {
+            for card in frontSideCards {
+                card.flipWithoutHandler()
+            }
+        } else {
+            for card in backSideCards {
+                card.flipWithoutHandler()
+            }
+        }
     }
     
     private func getNewGame() -> Game{
@@ -75,6 +102,30 @@ class BoardGameController: UIViewController {
         return button
     }
     
+    private func getFlipAllCardsButtonView() -> UIButton {
+        let margin: CGFloat = 10
+        
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - margin * 2, height: 30))
+        
+        let scene = UIApplication.shared.connectedScenes
+        let windowScene = scene.first as? UIWindowScene
+        let window = windowScene?.windows.first
+        let bottomPadding = window!.safeAreaInsets.bottom
+        
+        
+        button.center.x = view.center.x
+        button.frame.origin.y = self.view.frame.height - bottomPadding - 17
+        button.setTitle("Перевернуть все карточки", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.gray, for: .highlighted)
+        button.backgroundColor = .lightGray
+        button.layer.cornerRadius = 10
+        
+        button.addTarget(nil, action: #selector(flipAllCards(_:)), for: .touchUpInside)
+        
+        return button
+    }
+    
     private func getBoardGameView() -> UIView {
         let margin: CGFloat = 10
         
@@ -89,7 +140,7 @@ class BoardGameController: UIViewController {
         boardView.frame.origin.x = margin
         boardView.frame.origin.y = topPadding + startButtonView.frame.height + margin
         boardView.frame.size.width = UIScreen.main.bounds.width - margin * 2
-        boardView.frame.size.height = UIScreen.main.bounds.height - boardView.frame.origin.y - margin - bottomPadding
+        boardView.frame.size.height = UIScreen.main.bounds.height - boardView.frame.origin.y - bottomPadding - flipAllCardsButtonView.frame.height
         boardView.layer.cornerRadius = 5
         boardView.backgroundColor = UIColor(red: 0.1, green: 0.9, blue: 0.1, alpha: 0.3)
         
