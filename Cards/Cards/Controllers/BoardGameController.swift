@@ -15,6 +15,7 @@ class BoardGameController: UIViewController {
     lazy var game: Game = getNewGame()
     lazy var startButtonView = getStartButtonView()
     lazy var flipAllCardsButtonView = getFlipAllCardsButtonView()
+    lazy var goBackButtonView = getGoBackButtonView()
     lazy var boardGameView = getBoardGameView()
 
     private var cardSize: CGSize {
@@ -30,6 +31,8 @@ class BoardGameController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.isNavigationBarHidden = true
     }
     
     override func loadView() {
@@ -38,6 +41,7 @@ class BoardGameController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(startButtonView)
         view.addSubview(flipAllCardsButtonView)
+        view.addSubview(goBackButtonView)
         view.addSubview(boardGameView)
     }
     
@@ -72,6 +76,10 @@ class BoardGameController: UIViewController {
         }
     }
     
+    @objc func goBack(_ sender: UIButton) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     private func getNewGame() -> Game{
         let game = Game()
         
@@ -82,7 +90,7 @@ class BoardGameController: UIViewController {
     }
     
     private func getStartButtonView() -> UIButton {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
         
         let scene = UIApplication.shared.connectedScenes
         let windowScene = scene.first as? UIWindowScene
@@ -90,7 +98,7 @@ class BoardGameController: UIViewController {
         let topPadding = window!.safeAreaInsets.top
         
         button.center.x = view.center.x
-        button.frame.origin.y = topPadding + 5
+        button.frame.origin.y = topPadding
         button.setTitle("Начать игру", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.setTitleColor(.gray, for: .highlighted)
@@ -112,9 +120,8 @@ class BoardGameController: UIViewController {
         let window = windowScene?.windows.first
         let bottomPadding = window!.safeAreaInsets.bottom
         
-        
         button.center.x = view.center.x
-        button.frame.origin.y = self.view.frame.height - bottomPadding - 17
+        button.frame.origin.y = self.view.frame.height - bottomPadding - 20
         button.setTitle("Перевернуть все карточки", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.setTitleColor(.gray, for: .highlighted)
@@ -122,6 +129,26 @@ class BoardGameController: UIViewController {
         button.layer.cornerRadius = 10
         
         button.addTarget(nil, action: #selector(flipAllCards(_:)), for: .touchUpInside)
+        
+        return button
+    }
+    
+    private func getGoBackButtonView() -> UIButton {
+        let margin: CGFloat = 10
+        
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 30))
+        
+        let scene = UIApplication.shared.connectedScenes
+        let windowScene = scene.first as? UIWindowScene
+        let window = windowScene?.windows.first
+        let topPadding = window!.safeAreaInsets.top
+        
+        button.frame.origin.x = margin
+        button.frame.origin.y = topPadding
+        button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        button.tintColor = .black
+        
+        button.addTarget(nil, action: #selector(goBack(_:)), for: .touchUpInside)
         
         return button
     }
@@ -142,7 +169,7 @@ class BoardGameController: UIViewController {
         boardView.frame.size.width = UIScreen.main.bounds.width - margin * 2
         boardView.frame.size.height = UIScreen.main.bounds.height - boardView.frame.origin.y - bottomPadding - flipAllCardsButtonView.frame.height
         boardView.layer.cornerRadius = 5
-        boardView.backgroundColor = UIColor(red: 0.1, green: 0.9, blue: 0.1, alpha: 0.3)
+        boardView.backgroundColor = UIColor(red: 8/255, green: 69/255, blue: 8/255, alpha: 1)
         
         return boardView
     }
