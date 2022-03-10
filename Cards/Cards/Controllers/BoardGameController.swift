@@ -16,6 +16,7 @@ class BoardGameController: UIViewController {
     lazy var startButtonView = getStartButtonView()
     lazy var flipAllCardsButtonView = getFlipAllCardsButtonView()
     lazy var goBackButtonView = getGoBackButtonView()
+    lazy var goToSettingsButtonView = getGoToSettingsButtinView()
     lazy var boardGameView = getBoardGameView()
 
     private var cardSize: CGSize {
@@ -38,10 +39,11 @@ class BoardGameController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        view.backgroundColor = .white
+//        view.backgroundColor = .white
         view.addSubview(startButtonView)
         view.addSubview(flipAllCardsButtonView)
         view.addSubview(goBackButtonView)
+        view.addSubview(goToSettingsButtonView)
         view.addSubview(boardGameView)
     }
     
@@ -80,10 +82,16 @@ class BoardGameController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @objc func goToSettingsView(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let gameSettingsController = storyboard.instantiateViewController(withIdentifier: "GameSettingsController")
+        navigationController?.pushViewController(gameSettingsController, animated: true)
+    }
+    
     private func getNewGame() -> Game{
         let game = Game()
         
-        game.cardsCount = self.cardsPairsCount
+        game.cardsPairsCount = self.cardsPairsCount
         game.generateCards()
         
         return game
@@ -149,6 +157,26 @@ class BoardGameController: UIViewController {
         button.tintColor = .black
         
         button.addTarget(nil, action: #selector(goBack(_:)), for: .touchUpInside)
+        
+        return button
+    }
+    
+    private func getGoToSettingsButtinView() -> UIButton {
+        let margin: CGFloat = 10
+        
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 30))
+        
+        let scene = UIApplication.shared.connectedScenes
+        let windowScene = scene.first as? UIWindowScene
+        let window = windowScene?.windows.first
+        let topPadding = window!.safeAreaInsets.top
+        
+        button.frame.origin.x = self.view.frame.width - button.frame.width - margin
+        button.frame.origin.y = topPadding
+        button.setImage(UIImage(systemName: "gear"), for: .normal)
+        button.tintColor = .black
+        
+        button.addTarget(nil, action: #selector(goToSettingsView(_:)), for: .touchUpInside)
         
         return button
     }

@@ -26,6 +26,36 @@ class CardViewFactory {
         }
     }
     
+    func getFrontSideView (_ shape: CardType, withSize size: CGSize, andColor color: CardColor) -> UIView {
+        let frame = CGRect(origin: .zero, size: size)
+        let viewColor = getViewColorBy(modelColor: color)
+        
+        switch shape {
+        case .filledCircle:
+            return CardView<FilledCircleShape>(frame: frame, color: viewColor).frontSideView
+        case .unfilledCircle:
+            return CardView<UnfilledCircleShape>(frame: frame, color: viewColor).frontSideView
+        case .cross:
+            return CardView<CrossShape>(frame: frame, color: viewColor).frontSideView
+        case .square:
+            return CardView<SquareShape>(frame: frame, color: viewColor).frontSideView
+        case .fill:
+            return CardView<FillShape>(frame: frame, color: viewColor).frontSideView
+        }
+    }
+    
+    func getBackSideView (_ shape: CardBackSideType, withSize size: CGSize, andColor color: CardColor) -> UIView {
+        let frame = CGRect(origin: .zero, size: size)
+        let viewColor = getViewColorBy(modelColor: color)
+        
+        switch shape {
+        case .line:
+            return CardView<BackSideLine>(frame: frame, color: viewColor).frontSideView
+        case .circle:
+            return CardView<BackSideCircle>(frame: frame, color: viewColor).frontSideView
+        }
+    }
+    
     private func getViewColorBy(modelColor: CardColor) -> UIColor {
         switch modelColor {
         case .red:

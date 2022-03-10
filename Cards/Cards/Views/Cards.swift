@@ -16,6 +16,8 @@ protocol FlippableView: UIView {
 }
 
 class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
+    private var storage: GameSettingsStorageProtocol = GameSettingStorage()
+    
     private var margin: Int = 10
     private var anchorPoint: CGPoint = CGPoint(x: 0, y: 0)
     private var startTouchPoint: CGPoint!
@@ -134,14 +136,15 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
     }
      
     private func getBackSideView() -> UIView {
+        let availableCardBacks = storage.loadSettings().availableCardBacks
         let view = UIView(frame: self.bounds)
         view.backgroundColor = .white
         
-        switch ["circle", "line"].randomElement() {
-        case "circle":
+        switch availableCardBacks.randomElement() {
+        case .circle:
             let layer = BackSideCircle(size: self.bounds.size, fillColor: UIColor.black.cgColor)
             view.layer.addSublayer(layer)
-        case "line":
+        case .line:
             let layer = BackSideLine(size: self.bounds.size, fillColor: UIColor.black.cgColor)
             view.layer.addSublayer(layer)
         default:
