@@ -14,6 +14,15 @@
 		E5160C7C27CF8EE4000C025F /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5160C7B27CF8EE4000C025F /* Game.swift */; };
 		E5160C8027CFA632000C025F /* CardViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5160C7F27CFA632000C025F /* CardViewFactory.swift */; };
 		E57A9C6427D6377D00F6AB07 /* StartScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57A9C6327D6377D00F6AB07 /* StartScreenController.swift */; };
+		E57A9C6827D7A7F400F6AB07 /* GameSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57A9C6727D7A7F400F6AB07 /* GameSettingsController.swift */; };
+		E57A9C6A27D89A2700F6AB07 /* EditCardColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57A9C6927D89A2700F6AB07 /* EditCardColorController.swift */; };
+		E57A9C6D27D89A4A00F6AB07 /* EditCardTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57A9C6C27D89A4A00F6AB07 /* EditCardTypeController.swift */; };
+		E57A9C6F27D89A9E00F6AB07 /* EditCardBackSideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57A9C6E27D89A9E00F6AB07 /* EditCardBackSideController.swift */; };
+		E57A9C7327D8BC1F00F6AB07 /* CardColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57A9C7127D8BC1F00F6AB07 /* CardColorCell.swift */; };
+		E57A9C7427D8BC1F00F6AB07 /* CardColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57A9C7227D8BC1F00F6AB07 /* CardColorCell.xib */; };
+		E57A9C7727D8DCBC00F6AB07 /* CardSideViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57A9C7527D8DCBC00F6AB07 /* CardSideViewCell.swift */; };
+		E57A9C7827D8DCBC00F6AB07 /* CardSideViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57A9C7627D8DCBC00F6AB07 /* CardSideViewCell.xib */; };
+		E57A9C7A27D9B59100F6AB07 /* GameSettingsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57A9C7927D9B59100F6AB07 /* GameSettingsStorage.swift */; };
 		E5F3D05027C3B8F400226C49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F3D04F27C3B8F400226C49 /* AppDelegate.swift */; };
 		E5F3D05227C3B8F400226C49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F3D05127C3B8F400226C49 /* SceneDelegate.swift */; };
 		E5F3D05727C3B8F400226C49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5F3D05527C3B8F400226C49 /* Main.storyboard */; };
@@ -29,6 +38,15 @@
 		E5160C7B27CF8EE4000C025F /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		E5160C7F27CFA632000C025F /* CardViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewFactory.swift; sourceTree = "<group>"; };
 		E57A9C6327D6377D00F6AB07 /* StartScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenController.swift; sourceTree = "<group>"; };
+		E57A9C6727D7A7F400F6AB07 /* GameSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingsController.swift; sourceTree = "<group>"; };
+		E57A9C6927D89A2700F6AB07 /* EditCardColorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCardColorController.swift; sourceTree = "<group>"; };
+		E57A9C6C27D89A4A00F6AB07 /* EditCardTypeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCardTypeController.swift; sourceTree = "<group>"; };
+		E57A9C6E27D89A9E00F6AB07 /* EditCardBackSideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCardBackSideController.swift; sourceTree = "<group>"; };
+		E57A9C7127D8BC1F00F6AB07 /* CardColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardColorCell.swift; sourceTree = "<group>"; };
+		E57A9C7227D8BC1F00F6AB07 /* CardColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardColorCell.xib; sourceTree = "<group>"; };
+		E57A9C7527D8DCBC00F6AB07 /* CardSideViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSideViewCell.swift; sourceTree = "<group>"; };
+		E57A9C7627D8DCBC00F6AB07 /* CardSideViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardSideViewCell.xib; sourceTree = "<group>"; };
+		E57A9C7927D9B59100F6AB07 /* GameSettingsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingsStorage.swift; sourceTree = "<group>"; };
 		E5F3D04C27C3B8F400226C49 /* Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F3D04F27C3B8F400226C49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5F3D05127C3B8F400226C49 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +82,17 @@
 				E5160C7F27CFA632000C025F /* CardViewFactory.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E57A9C7027D8ABC500F6AB07 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E57A9C7127D8BC1F00F6AB07 /* CardColorCell.swift */,
+				E57A9C7227D8BC1F00F6AB07 /* CardColorCell.xib */,
+				E57A9C7527D8DCBC00F6AB07 /* CardSideViewCell.swift */,
+				E57A9C7627D8DCBC00F6AB07 /* CardSideViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		E5F3D04327C3B8F400226C49 = {
@@ -118,6 +147,10 @@
 			children = (
 				E5160C7727CF8AB4000C025F /* BoardGameController.swift */,
 				E57A9C6327D6377D00F6AB07 /* StartScreenController.swift */,
+				E57A9C6727D7A7F400F6AB07 /* GameSettingsController.swift */,
+				E57A9C6927D89A2700F6AB07 /* EditCardColorController.swift */,
+				E57A9C6C27D89A4A00F6AB07 /* EditCardTypeController.swift */,
+				E57A9C6E27D89A9E00F6AB07 /* EditCardBackSideController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -125,6 +158,7 @@
 		E5F3D06627C3B95300226C49 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E57A9C7027D8ABC500F6AB07 /* Cells */,
 				E5160C7627CF8A6D000C025F /* Storyboards */,
 				E5160C7227CF8905000C025F /* Cards.swift */,
 				E5160C7427CF890F000C025F /* Shapes.swift */,
@@ -137,6 +171,7 @@
 			children = (
 				E5160C7927CF8DC4000C025F /* Card.swift */,
 				E5160C7B27CF8EE4000C025F /* Game.swift */,
+				E57A9C7927D9B59100F6AB07 /* GameSettingsStorage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -202,6 +237,8 @@
 				E5F3D05C27C3B8F600226C49 /* LaunchScreen.storyboard in Resources */,
 				E5F3D05927C3B8F600226C49 /* Assets.xcassets in Resources */,
 				E5F3D05727C3B8F400226C49 /* Main.storyboard in Resources */,
+				E57A9C7827D8DCBC00F6AB07 /* CardSideViewCell.xib in Resources */,
+				E57A9C7427D8BC1F00F6AB07 /* CardColorCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,11 +252,18 @@
 				E5160C7827CF8AB4000C025F /* BoardGameController.swift in Sources */,
 				E57A9C6427D6377D00F6AB07 /* StartScreenController.swift in Sources */,
 				E5160C7A27CF8DC4000C025F /* Card.swift in Sources */,
+				E57A9C7327D8BC1F00F6AB07 /* CardColorCell.swift in Sources */,
+				E57A9C7A27D9B59100F6AB07 /* GameSettingsStorage.swift in Sources */,
+				E57A9C6D27D89A4A00F6AB07 /* EditCardTypeController.swift in Sources */,
+				E57A9C6F27D89A9E00F6AB07 /* EditCardBackSideController.swift in Sources */,
 				E5160C7C27CF8EE4000C025F /* Game.swift in Sources */,
 				E5F3D05027C3B8F400226C49 /* AppDelegate.swift in Sources */,
 				E5160C7527CF890F000C025F /* Shapes.swift in Sources */,
 				E5160C8027CFA632000C025F /* CardViewFactory.swift in Sources */,
 				E5F3D05227C3B8F400226C49 /* SceneDelegate.swift in Sources */,
+				E57A9C7727D8DCBC00F6AB07 /* CardSideViewCell.swift in Sources */,
+				E57A9C6827D7A7F400F6AB07 /* GameSettingsController.swift in Sources */,
+				E57A9C6A27D89A2700F6AB07 /* EditCardColorController.swift in Sources */,
 				E5160C7327CF8906000C025F /* Cards.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

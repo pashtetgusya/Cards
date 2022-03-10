@@ -8,16 +8,31 @@
 import Foundation
 
 class Game {
-    var cardsCount = 0
+    private var storage: GameSettingsStorageProtocol = GameSettingStorage()
+    private var gameSettings: GameSettings
+    
+    var cardsPairsCount: Int
+    var availableCardBacks: [CardBackSideType]
+    var availableCardFronts: [CardType]
+    var availableCardColors: [CardColor]
+    
     var cards = [Card]()
+    
+    init() {
+        gameSettings = storage.loadSettings()
+        cardsPairsCount = gameSettings.countCardPairs
+        availableCardBacks = gameSettings.availableCardBacks
+        availableCardFronts = gameSettings.availableCardFronts
+        availableCardColors = gameSettings.availableCardColors
+    }
     
     func generateCards() {
         var cards = [Card]()
         
-        for _ in 0...cardsCount {
+        for _ in 0...cardsPairsCount {
             let randomElement = (
-                type: CardType.allCases.randomElement()!,
-                color: CardColor.allCases.randomElement()!
+                type: availableCardFronts.randomElement()!,
+                color: availableCardColors.randomElement()!
             )
             cards.append(randomElement)
         }

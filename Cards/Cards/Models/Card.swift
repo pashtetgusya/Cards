@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CardType: CaseIterable {
+enum CardType: String, CaseIterable {
     case filledCircle
     case unfilledCircle
     case cross
@@ -15,7 +15,12 @@ enum CardType: CaseIterable {
     case fill
 }
 
-enum CardColor: CaseIterable {
+enum CardBackSideType: String, CaseIterable {
+    case line
+    case circle
+}
+
+enum CardColor: String, CaseIterable {
     case red
     case green
     case black
