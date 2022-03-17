@@ -39,6 +39,12 @@ class GameSettingStorage: GameSettingsStorageProtocol {
     let storageKey: String = "cardsSettings"
     
     func loadSettings() -> GameSettings{
+        var resultSettings: GameSettings
+        var resultBacks: [CardBackSideType] = []
+        var resultFronts: [CardType] = []
+        var resultColors: [CardColor] = []
+        var resultCountPairs: Int
+        
         guard let settingsFromStorage = storage.object(forKey: storageKey) as? [String: [String]] else {
             return defaultSettings
         }
@@ -49,14 +55,11 @@ class GameSettingStorage: GameSettingsStorageProtocol {
               let rawPairs = settingsFromStorage[SettingsKey.pairs.rawValue] else {
                   return defaultSettings
               }
-        
-        var resultSettings: GameSettings
-        var resultBacks: [CardBackSideType] = []
-        var resultFronts: [CardType] = []
-        var resultColors: [CardColor] = []
-        var resultCountPairs: Int
-        
-        
+        guard !rawBacks.isEmpty,
+              !rawFronts.isEmpty,
+              !rawColors.isEmpty else {
+                  return defaultSettings
+              }
         
         for rawBack in rawBacks {
             let back: CardBackSideType.RawValue = rawBack

@@ -29,7 +29,7 @@ class Game {
     func generateCards() {
         var cards = [Card]()
         
-        for _ in 0...cardsPairsCount {
+        for _ in 1...cardsPairsCount {
             let randomElement = (
                 type: availableCardFronts.randomElement()!,
                 color: availableCardColors.randomElement()!
