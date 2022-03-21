@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E5025F4F27E2F96B00B7B983 /* GameProgressStirage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5025F4E27E2F96B00B7B983 /* GameProgressStirage.swift */; };
 		E5160C7327CF8906000C025F /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5160C7227CF8905000C025F /* Cards.swift */; };
 		E5160C7527CF890F000C025F /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5160C7427CF890F000C025F /* Shapes.swift */; };
 		E5160C7827CF8AB4000C025F /* BoardGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5160C7727CF8AB4000C025F /* BoardGameController.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E5025F4E27E2F96B00B7B983 /* GameProgressStirage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameProgressStirage.swift; sourceTree = "<group>"; };
 		E5160C7227CF8905000C025F /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		E5160C7427CF890F000C025F /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		E5160C7727CF8AB4000C025F /* BoardGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardGameController.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				E5160C7927CF8DC4000C025F /* Card.swift */,
 				E5160C7B27CF8EE4000C025F /* Game.swift */,
 				E57A9C7927D9B59100F6AB07 /* GameSettingsStorage.swift */,
+				E5025F4E27E2F96B00B7B983 /* GameProgressStirage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5025F4F27E2F96B00B7B983 /* GameProgressStirage.swift in Sources */,
 				E5160C7827CF8AB4000C025F /* BoardGameController.swift in Sources */,
 				E57A9C6427D6377D00F6AB07 /* StartScreenController.swift in Sources */,
 				E5160C7A27CF8DC4000C025F /* Card.swift in Sources */,

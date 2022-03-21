@@ -7,6 +7,7 @@
 
 import Foundation
 
+//Типы фигуры карт
 enum CardType: String, CaseIterable {
     case filledCircle
     case unfilledCircle
@@ -15,11 +16,13 @@ enum CardType: String, CaseIterable {
     case fill
 }
 
+//Типы рубашек карт
 enum CardBackSideType: String, CaseIterable {
     case line
     case circle
 }
 
+//Типы цветов карт
 enum CardColor: String, CaseIterable {
     case red
     case green
@@ -31,4 +34,5 @@ enum CardColor: String, CaseIterable {
     case orange
 }
 
-typealias Card = (type: CardType, color: CardColor)
+//Игральная карточка
+typealias Card = (type: CardType, backSideType: CardBackSideType, color: CardColor)

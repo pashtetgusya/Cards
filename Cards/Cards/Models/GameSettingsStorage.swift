@@ -7,6 +7,7 @@
 
 import Foundation
 
+//Хранилище настроек игры
 typealias GameSettings = (
     availableCardBacks: [CardBackSideType],
     availableCardFronts: [CardType],
@@ -14,6 +15,7 @@ typealias GameSettings = (
     countCardPairs: Int
 )
 
+//Протокол хранилища настроек игры
 protocol GameSettingsStorageProtocol {
     func loadSettings() -> GameSettings
     func saveSettings(_ settings: GameSettings)
@@ -28,6 +30,7 @@ class GameSettingStorage: GameSettingsStorageProtocol {
         case pairs
     }
     
+//    Стандартные настройки игры
     private let defaultSettings: GameSettings = (
         CardBackSideType.allCases,
         CardType.allCases,
@@ -38,6 +41,7 @@ class GameSettingStorage: GameSettingsStorageProtocol {
     private var storage = UserDefaults.standard
     let storageKey: String = "cardsSettings"
     
+//    Загрузка настроек
     func loadSettings() -> GameSettings{
         var resultSettings: GameSettings
         var resultBacks: [CardBackSideType] = []
@@ -83,6 +87,7 @@ class GameSettingStorage: GameSettingsStorageProtocol {
         return resultSettings
     }
     
+//    Сохранение настроек
     func saveSettings(_ settings: GameSettings) {
         var newGameSettingsArray: [String: [String]] = [:]
         

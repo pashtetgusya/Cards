@@ -9,9 +9,12 @@ import UIKit
 
 class CardViewFactory {
     func get (_ shape: CardType, withSize size: CGSize, andColor color: CardColor) -> UIView {
+//        На основе размеров определяем фрейм
         let frame = CGRect(origin: .zero, size: size)
+//        Определяем UI-цвет на основе цвета модели
         let viewColor = getViewColorBy(modelColor: color)
         
+//        Генерируем и возвращаем карточку
         switch shape {
         case .filledCircle:
             return CardView<FilledCircleShape>(frame: frame, color: viewColor)
@@ -30,6 +33,7 @@ class CardViewFactory {
         let frame = CGRect(origin: .zero, size: size)
         let viewColor = getViewColorBy(modelColor: color)
         
+//        Генерируем и возвращаем лицевую сторону карточки
         switch shape {
         case .filledCircle:
             return CardView<FilledCircleShape>(frame: frame, color: viewColor).frontSideView
@@ -48,6 +52,7 @@ class CardViewFactory {
         let frame = CGRect(origin: .zero, size: size)
         let viewColor = getViewColorBy(modelColor: color)
         
+//        Генерируем и возвращаем рубашку карточки 
         switch shape {
         case .line:
             return CardView<BackSideLine>(frame: frame, color: viewColor).frontSideView
@@ -56,6 +61,7 @@ class CardViewFactory {
         }
     }
     
+//    Преобразуем цвет модели в цвет представления
     private func getViewColorBy(modelColor: CardColor) -> UIColor {
         switch modelColor {
         case .red:
