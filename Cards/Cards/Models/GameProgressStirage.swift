@@ -28,6 +28,7 @@ protocol GameProgressStorageProtocol {
 
 class GameProgressStorage: GameProgressStorageProtocol {
     
+//    Перечисление ключей параметров карточки
     private enum ProgressKey: String {
         case cardTag
         case cardFront
@@ -43,13 +44,17 @@ class GameProgressStorage: GameProgressStorageProtocol {
     
 //    Загрузка прогресса
     func loadProgress() -> [CardInfoForStorage]? {
+//        Хранилище загруженного прогресса игры
         var loadedGameProgress: [CardInfoForStorage] = []
         
+//        Загружаем из UserDefaults сохраненноый прогрес игры
         guard let progressFromStorage = storage.object(forKey: storageProgressKey) as? [[String: String]] else {
             return nil
         }
         
+//        Перебираем все карточки из сохраненного прогресса
         for card in progressFromStorage {
+//            Получаем параметры карточки
             guard let tag = card[ProgressKey.cardTag.rawValue],
                   let front = card[ProgressKey.cardFront.rawValue],
                   let back = card[ProgressKey.cardBack.rawValue],
@@ -58,6 +63,7 @@ class GameProgressStorage: GameProgressStorageProtocol {
                   let coordinateY = card[ProgressKey.coordinateY.rawValue] else {
                 return nil
             }
+//            Преобразуем параметры карточки в соответствующие типы
             let cardTag = Int(tag)!
             let cardFront = CardType(rawValue: front)!
             let cardBack = CardBackSideType(rawValue: back)!
@@ -65,6 +71,7 @@ class GameProgressStorage: GameProgressStorageProtocol {
             let cardCoordinateX = Int(coordinateX)!
             let cardCoordinateY = Int(coordinateY)!
             
+//            Сохраняем все параметры карточк
             let loadedCard: CardInfoForStorage = (
                 cardTag: cardTag,
                 cardFrontSide: cardFront,
@@ -73,6 +80,7 @@ class GameProgressStorage: GameProgressStorageProtocol {
                 cardCoordinateX: cardCoordinateX,
                 cardCoordinateY: cardCoordinateY)
             
+//            Добавляем карточку в хранилище загруженного прогресса
             loadedGameProgress.append(loadedCard)
         }
         
@@ -81,11 +89,15 @@ class GameProgressStorage: GameProgressStorageProtocol {
     
 //    Сохранение прогресса
     func saveProgress(_ progress: [CardInfoForStorage]) {
+//        Хранилище прогресса игры
         var newGameProgress: [[String: String]] = []
         
+//        Перебираем переданные карточки
         for card in progress {
+//            Хранилище параметов карточки
             var savedCard: [String: String] = [:]
             
+//            Записываем в хранилище параметры карточки
             savedCard[ProgressKey.cardTag.rawValue] = String(card.cardTag)
             savedCard[ProgressKey.cardFront.rawValue] = card.cardFrontSide.rawValue
             savedCard[ProgressKey.cardBack.rawValue] = card.cardBackSide.rawValue
@@ -93,9 +105,11 @@ class GameProgressStorage: GameProgressStorageProtocol {
             savedCard[ProgressKey.coordinateX.rawValue] = String(card.cardCoordinateX)
             savedCard[ProgressKey.coordinateY.rawValue] = String(card.cardCoordinateY)
             
+//            Добавляем карточку в хранилище прогресса
             newGameProgress.append(savedCard)
         }
 
+//        Записываем прогресс игры в UserDefauilts
         storage.set(newGameProgress, forKey: storageProgressKey)
     }
     
@@ -103,10 +117,12 @@ class GameProgressStorage: GameProgressStorageProtocol {
     func loadCountFlip() -> Int? {
         var newCountFlip: Int
         
+//        Загружаем из UserDefauilts количество переворотов
         guard let loadedCountFlip = storage.object(forKey: storageCountFlipKey) as? Int else {
             return 0
         }
         
+//        Сохраняем загруженное из хранилища количество переворотов
         newCountFlip = loadedCountFlip
         
         return newCountFlip
@@ -115,8 +131,10 @@ class GameProgressStorage: GameProgressStorageProtocol {
 //    Сохранение количества переворотов
     func saveCountFlip(_ count: Int) {
         var newCountFlip: Int
+//        Записываем переданное количество переворотов
         newCountFlip = count
         
+//        Сохраняем в UserDefaults
         storage.set(newCountFlip, forKey: storageCountFlipKey)
     }
 }

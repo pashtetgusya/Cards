@@ -18,14 +18,19 @@ protocol FlippableView: UIView {
 class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
     private var storage: GameSettingsStorageProtocol = GameSettingStorage()
     
+//    Внутренний отступ представления
     private var margin: Int = 10
+//    Точка привязки
     private var anchorPoint: CGPoint = CGPoint(x: 0, y: 0)
+//    Исходные координаты карточки
     private var startTouchPoint: CGPoint!
     
+//    Представления лицевой и обратной сторон карточки
     lazy var frontSideView: UIView = self.getFrontSideView()
     lazy var backSideView: UIView = self.getBackSideView()
     
     var cornerRadius: Int = 20
+//    Цвет фигуры карточки
     var color: UIColor!
     var isFlipped: Bool = false {
         didSet {
@@ -46,9 +51,11 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
     }
     
     override func draw(_ rect: CGRect) {
+//        Удаляем добавленные ранее дочерние представления
         backSideView.removeFromSuperview()
         frontSideView.removeFromSuperview()
         
+//        Добавляем новые представления
         if isFlipped {
             self.addSubview(backSideView)
             self.addSubview(frontSideView)
@@ -60,18 +67,22 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        Изменяем координаты точки привязки
         anchorPoint.x = touches.first!.location(in: window).x - frame.minX
         anchorPoint.y = touches.first!.location(in: window).y - frame.minY
-        
+
+//        Сохраняем исходные координаты
         startTouchPoint = frame.origin
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        Изменяем координаты карточки
         self.frame.origin.x = touches.first!.location(in: window).x - anchorPoint.x
         self.frame.origin.y = touches.first!.location(in: window).y - anchorPoint.y
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        Если карточка не перемещалась, то переворачиваем ее
         if self.frame.origin == startTouchPoint {
             flip()
         }
@@ -96,24 +107,31 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
 
     }
     
+//    Переворот карточки
     func flip() {
+//        Определяем между какими представлениями осуществляется переворот
         let fromView = isFlipped ? frontSideView : backSideView
         let toView = isFlipped ? backSideView : frontSideView
         
+//        Запускаем анимированный переход
         UIView.transition(from: fromView, to: toView, duration: 0.5, options: [.transitionFlipFromTop], completion: { _ in
             self.flippCompletationHandler?(self)
         })
         isFlipped.toggle()
     }
     
+//    Переворот карточки при нажатии "Перевернуть все"
     func flipWithoutHandler() {
+//        Определяем между какими представлениями осуществляется переворот
         let fromView = isFlipped ? frontSideView : backSideView
         let toView = isFlipped ? backSideView : frontSideView
         
+//        Запускаем анимированный переход
         UIView.transition(from: fromView, to: toView, duration: 0.5, options: [.transitionFlipFromTop], completion: nil)
         isFlipped.toggle()
     }
 
+//    Возвращаем представление для лицевой стороны карточки
     private func getFrontSideView() -> UIView {
         let view = UIView(frame: self.bounds)
         let shapeView = UIView(frame: CGRect(
@@ -135,6 +153,7 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
         return view
     }
      
+//    Возвращаем представление для рубашки карточки
     private func getBackSideView() -> UIView {
         let availableCardBacks = storage.loadSettings().availableCardBacks
         let view = UIView(frame: self.bounds)
@@ -157,6 +176,7 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
         return view
     }
     
+//    Настройка границ карточки
     private func setupBorders() {
         self.clipsToBounds = true
         self.layer.cornerRadius = CGFloat(cornerRadius)
